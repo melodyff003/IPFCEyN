@@ -30,11 +30,42 @@ maximoAbs x y | absoluto x > absoluto y = x
               |otherwise = -1 
 --c 
 maximo3 :: Int -> Int -> Int -> Int 
-maximo3 a b c | a > b &&  b > c = a
-              | b > a && a > c = b 
+maximo3 a b c | a > b &&  a > c = a
+              | b > a && b > c = b 
               | c > a && c > b = c
+--d
+algunoEs0 :: Float -> Float -> Bool 
+algunoEs0 0 _ = True
+algunoEs0 _ 0 = True 
+algunoEs0 _ _ = False
 
---faltan casos para a > b y b < c 
-maximo2 :: Int -> Int -> Int 
-maximo2 a b | a > b = a
-            |otherwise = b
+--e 
+ambos0 :: Float -> Float -> Bool
+ambos0 0 0 = True 
+--f 
+mismoIntervalo :: Float -> Float -> Bool  
+mismoIntervalo x y | x <= 3 && y <= 3 = True
+                   | (x> 3 && x<= 7) && (y>3 && y<=7 ) = True 
+                   | x>7 && y>7 = True 
+                   |otherwise = False 
+--G 
+sumaDistintos:: Int -> Int -> Int -> Int 
+sumaDistintos a b c | a == b = a + c 
+                    | a == c = a + b 
+                    | b == c = b + a 
+                    |otherwise = a + b + c 
+--h
+esMultiploDe :: Int -> Int -> Bool 
+esMultiploDe x y | mod x y == 0 = True 
+                 |otherwise = False 
+--i 
+digitoUnidades :: Int -> Int
+digitoUnidades x = mod x 10
+
+--j 
+digitoDecenas :: Int -> Int 
+digitoDecenas x = mod (div x 10) 10 
+
+digitoDecenas2 :: Int -> Int 
+digitoDecenas2 x = mod x 100 --esta mal 
+
