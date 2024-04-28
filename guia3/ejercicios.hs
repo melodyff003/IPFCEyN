@@ -69,3 +69,22 @@ digitoDecenas x = mod (div x 10) 10
 digitoDecenas2 :: Int -> Int 
 digitoDecenas2 x = mod x 100 --esta mal 
 
+--Ejercicio 3 
+estanRelacionados :: Integer -> Integer -> Bool 
+estanRelacionados x y | x == 0 && y == 0 = False 
+                      | mod x y == 0 = True
+                      | otherwise = False
+
+--Ejercicio 4 a
+prodInter :: (Integer, Integer) -> (Integer, Integer) -> (Integer, Integer) 
+prodInter (ax, ay) (bx, by) = (ax*bx, ay*by)
+
+--b 
+todoMenor :: (Float, Float) -> (Float, Float) -> Bool
+todoMenor (ax, ay) (bx, by) | ax < bx && ay < by = True
+                            |otherwise = False
+--c 
+distanciaPtos :: (Float, Float) -> (Float, Float) -> Float
+distanciaPtos (a,b) (c,d) = sqrt(((c - a) **2) + ((d - b) **2)) 
+
+--d
