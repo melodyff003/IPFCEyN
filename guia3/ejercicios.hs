@@ -88,3 +88,19 @@ distanciaPtos :: (Float, Float) -> (Float, Float) -> Float
 distanciaPtos (a,b) (c,d) = sqrt(((c - a) **2) + ((d - b) **2)) 
 
 --d
+sumaTerna :: (Int, Int, Int) -> Int 
+sumaTerna (a, b, c) = a + b + c 
+
+--e 
+sumaMultiplos :: (Integer, Integer, Integer) -> Integer -> Integer 
+sumaMultiplos (a, b, c) k | mod a k == 0 && mod b k == 0 && mod c k == 0 = a + b +c 
+                          | mod a k == 0 && mod b k == 0 = a + b
+                          | mod a k == 0 && mod c k == 0 = a + c
+                          | mod b k == 0 && mod b k == 0 = b + c
+                          | mod a k == 0 = a 
+                          | mod b k == 0 = b 
+                          | mod c k == 0 = c 
+                          | otherwise = 0
+--f 
+
+
