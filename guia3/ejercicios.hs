@@ -102,5 +102,18 @@ sumaMultiplos (a, b, c) k | mod a k == 0 && mod b k == 0 && mod c k == 0 = a + b
                           | mod c k == 0 = c 
                           | otherwise = 0
 --f 
+posPrimerPar :: (Integer, Integer, Integer) -> Integer
+posPrimerPar (a, b, c) | mod a 2 == 0 = 0 
+                       | mod b 2 == 0 = 1 
+                       | mod c 2 == 0 = 2
+                       | otherwise = 4 
+
+--g 
+crearPar :: a -> b -> (a, b)
+crearPar a b = (a, b) --no toma chars
+
+--h 
+invertirPar :: (a, b) -> (b, a)
+invertirPar (a, b) = (b, a)
 
 
