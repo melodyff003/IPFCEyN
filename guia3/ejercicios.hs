@@ -116,4 +116,34 @@ crearPar a b = (a, b) --no toma chars
 invertirPar :: (a, b) -> (b, a)
 invertirPar (a, b) = (b, a)
 
+--ejercicio 5
+todosMenores :: (Integer, Integer, Integer) -> Bool 
+todosMenores (a, b, c) | f5 a > g5 a && f5 b > g5 b && f5 c > g5 c = True  
+                       | otherwise = False 
+
+--funciones aux
+f5 :: Integer -> Integer 
+f5 n | n <= 7 = n*n
+     | otherwise  = 2*n - 1 
+
+g5 :: Integer -> Integer
+g5 n | mod n 2 == 0 = div n 2
+     | otherwise = 3*n + 1 
+--ej 6 
+
+bisiesto :: Integer -> Bool
+bisiesto a | mod a 4 /= 0 || mod a 100 == 0 && mod a 400 /= 0 = False 
+           | otherwise = True 
+
+--ej 7
+distanciaManhattan :: (Float, Float, Float) -> (Float, Float, Float) -> Float 
+distanciaManhattan (a,b,c) (d,e,f) = abs((a-d) + (b - e) + (c-f))
+
+--ej 8 
+comparar :: Integer -> Integer -> Integer 
+comparar a b | sumaUltimosDig a > sumaUltimosDig b = -1
+             | sumaUltimosDig a < sumaUltimosDig b = 1
+             | otherwise = 0
+             where sumaUltimosDig x = mod x 10 + mod (div x 10) 10
+
 
