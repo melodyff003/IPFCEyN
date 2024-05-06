@@ -40,3 +40,27 @@ medioFac n | n <= 0 = 1
            | otherwise = n * medioFac(n - 2) 
 
 --ej 6
+sumaDigitos :: Integer -> Integer
+sumaDigitos n | n == 0 = 0 
+              | otherwise = ultimoDigito + sumaDigitos(div n 10)
+              where ultimoDigito = mod n 10 
+
+--ej 8 
+iesimoDigito :: Integer -> Integer -> Integer 
+iesimoDigito n i = mod (div n 10^(cantDigitos n - i)) 10 --no se usa recursión
+
+cantDigitos :: Integer -> Integer
+cantDigitos n | n < 10 = 1
+              |otherwise = cantDigitos(div n 10) + 1 
+
+--ej 9
+esCapicua :: Integer -> Bool 
+esCapicua n | n < 10 = True
+            | otherwise = n == invertir n
+
+invertir :: Integer -> Integer
+invertir n | n == 0 = 0 
+           | otherwise = ultimo * (10 ^ ((cantDigitos n) - 1 )) + invertir (div n 10)
+           where ultimo = mod n 10
+
+--ej 10
