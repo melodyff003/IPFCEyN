@@ -63,4 +63,16 @@ invertir n | n == 0 = 0
            | otherwise = ultimo * (10 ^ ((cantDigitos n) - 1 )) + invertir (div n 10)
            where ultimo = mod n 10
 
---ej 10
+--ej 10 sumatoria de funciones
+--a 
+f1 :: Integer -> Integer
+f1 0 = 1 
+f1 n = 2^n + f1(n-1)
+
+--b 
+f2 :: Integer -> Integer -> Integer
+f2 _ 0 = 1
+f2 q i =  q^i + f2 q (i-1)
+
+--c
+--ej 11 

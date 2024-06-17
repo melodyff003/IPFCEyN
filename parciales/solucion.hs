@@ -43,7 +43,13 @@ perteneceLista _ [] = False
 perteneceLista (a,b) ((c,d):xs) | a == c || a == d || b == c || b == d = True --si almenos un elemento aparece, devuelve true. Está bien porque el nombre no tiene que aparecer doble en ningun caso
                                 |otherwise = perteneceLista (a,b) xs  --no está definido cuando no pertenece
  
+--pto 3 
+--           vice        formula             votos   votos solo del vice
+votosVice :: String -> [(String, String)] -> [Int] -> Int
+votosVice vice [] [] = 0 
+votosVice vice ((x,y):xs) (v:vs) | vice == y = v --empareja los votos con el indice del vice
+                                 | otherwise = votosVice vice xs vs --recursion 
 
-
-
- 
+porcentajeDeVotos :: String -> [(String, String)] -> [Int] -> Float
+porcentajeDeVotos vice [] [] = 0
+porcentajeDeVotos vice formula votos = division ( votosVice vice formula votos) (sumaVotosAfirmativos formula votos) * 100
