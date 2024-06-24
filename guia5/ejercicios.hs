@@ -1,4 +1,5 @@
 
+
 --ej 1
 longitud :: [t] -> Int
 longitud [] = 0 
@@ -115,3 +116,76 @@ sumaN :: Integer -> [Integer] -> [Integer]
 sumaN _ [] = []
 sumaN n (x:xs) = x+n: sumaN n xs
 
+--3.5 
+sumarElPrimero :: [Integer] -> [Integer]
+sumarElPrimero [x] = [x + x]
+sumarElPrimero (x:xs) = x + x :sumaN x xs
+
+--3.6 
+sumarElUltimo :: [Integer] -> [Integer]
+sumarElUltimo [x] = [x+x]
+sumarElUltimo (x:xs) = sumaN (ultimo (x:xs)) (x:xs)
+
+--3.7 
+pares :: [Integer] -> [Integer]
+pares [] = []
+pares (x:xs) | mod x 2 == 0 = x: pares xs
+             | otherwise = pares xs 
+
+--3.9
+multiplosDeN :: Integer -> [Integer] -> [Integer]
+multiplosDeN _ [] = []
+multiplosDeN n (x:xs) | ((mod x n )== 0) = x : multiplosDeN n xs
+                      | otherwise = multiplosDeN n xs
+
+--3.9
+ordenar :: [Integer] -> [Integer]
+ordenar [] = []
+ordenar [x] = [x]
+ordenar lista = minimo lista : ordenar (quitar (minimo lista) lista)
+
+minimo :: [Integer] -> Integer
+minimo [x] = x
+minimo (x:y:xs) | x > y = minimo (y:xs) --y es menor a x, va guardando el menor 
+                | otherwise = minimo (x:xs)
+
+--4.0
+sacarBlancosRepetidos :: [Char] -> [Char]
+sacarBlancosRepetidos [] = []
+sacarBlancosRepetidos [y] = y: []
+sacarBlancosRepetidos (x:y:xs) | x == ' ' && y == ' ' = sacarBlancosRepetidos (' ':xs) 
+                               |otherwise = x: sacarBlancosRepetidos(y:xs)
+--4.b 
+contarPalabras :: [Char] -> Integer
+contarPalabras l = contarPalabrasSBR (limpiarLista l)
+
+contarPalabrasSBR :: [Char] -> Integer --Aux de contar palabras donde se sacaron los blancos repetidos
+contarPalabrasSBR [] = 0
+contarPalabrasSBR [x] = 1 --Porque la primer palabra no se cuenta, hay que compensar
+contarPalabrasSBR (x:xs) | x == ' ' = 1  +  contarPalabrasSBR xs
+                         | otherwise = contarPalabrasSBR xs
+
+--c) -- dada una lista arma una nueva lista con las palabras de la lista original.
+--[]++[1]++[2] == [1,2]
+
+palabras::[Char] -> [[Char]]
+palabras [] = []
+palabras l = palabrasAux(limpiarLista l) []
+
+--              Lista    Vacio
+palabrasAux :: [Char] -> [Char] -> [[Char]]
+palabrasAux [] palabra = [palabra]
+palabrasAux (x:xs) palabra | x /= ' ' = palabrasAux xs (palabra ++ [x])
+                           | otherwise = [palabra] ++ (palabrasAux xs [])
+
+
+sacarPrimerBlancos :: [Char] -> [Char]
+sacarPrimerBlancos [] = []
+sacarPrimerBlancos (x:xs) | x == ' ' = sacarPrimerBlancos xs
+                          | otherwise = (x:xs)
+
+limpiarLista :: [Char] -> [Char] --Saca espacios innecesarios
+limpiarLista [] = []
+limpiarLista l = reverso(sacarPrimerBlancos(reverso(sacarPrimerBlancos(sacarBlancosRepetidos l))))
+
+l4 = [' ','L','I','S','t','a','d','o']
